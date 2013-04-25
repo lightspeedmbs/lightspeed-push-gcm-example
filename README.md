@@ -2,15 +2,15 @@ lightspeed-android-gcm-demo
 ===========================
 This project is a simple demostration of the integration of Lightspeed SDK 2.0 with GCM notification
 
-Before building and run the project, you would have to prepare the following items.
-( For more detail instructions (Traditional Chinese), refer to http://docs.lightspeedmbs.com/ and select GCM快速開發指南)
+Before building and run the project, you would have to prepare the following items.<br>
+( For more detail instructions (Traditional Chinese), refer to http://docs.lightspeedmbs.com/ and select "GCM快速開發指南")
 
-A.Retrieve GCM Service<br />
+* Retrieve GCM Service<br />
 	1. Create your Google API Project on https://code.google.com/apis/console<br />
 	2. Note down the Project number<br />
 	3. Enable Google Cloud Messaging(GCM) service.<br />
 	4. Create new Server key to retrieve API key.<br />
-B.Retrieve Lightspeed Service<br />
+* Retrieve Lightspeed Service<br />
 	1. Register your account on http://admin.lightspeedmbs.com/apps<br />
 	2. Create a Lightspeed application with your account.<br />
 	3. Bind your Android application package name with your Lightspeed application<br />
