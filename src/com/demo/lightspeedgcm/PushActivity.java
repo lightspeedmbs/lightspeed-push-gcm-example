@@ -69,7 +69,7 @@ public class PushActivity extends Activity {
 			// Put the email and password in key-value pair into a List.
 			// This is the data we're going to post to loginUrl.
 			List<NameValuePair> pair = new ArrayList<NameValuePair>(1);
-			pair.add(new BasicNameValuePair("payload","{android: {alert:This is a Lightspeed Push Notification ,sound:default, vibrate:true, title:Lightspeed GCM}}"));
+			pair.add(new BasicNameValuePair("payload","{\"android\": {\"alert\":\"This is a Lightspeed Push Notification\" ,\"sound\":\"default\", \"vibrate\":true, \"title\":\"Lightspeed GCM\"}}"));
 			
 			try {
 				// UrlEncodedFromEntity transform the pair list into HTTP request entity.
