@@ -290,5 +290,14 @@ public class MainActivity extends Activity {
 	     // Return full string
 	     return total.toString();
 	}
+	
+	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		MainActivity.sCurrentAct = null;
+	}
+	
 
 }

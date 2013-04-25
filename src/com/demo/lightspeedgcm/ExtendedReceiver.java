@@ -28,6 +28,9 @@ public class ExtendedReceiver extends PushBroadcastReceiver {
 		super.onReceive(context, intent);
 		//Log.i("TEST","Origin context = "+ context.getPackageName() + ", string= "+ context.toString());
 		
+		if( MainActivity.sCurrentAct == null ){
+			return;
+		}		
 		
 		String alert = null;
 		String title = null;

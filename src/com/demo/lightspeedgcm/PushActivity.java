@@ -130,4 +130,11 @@ public class PushActivity extends Activity {
 		MainActivity.sCurrentAct = this;
 	}
 	
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		MainActivity.sCurrentAct = null;
+	}
+	
 }
