@@ -80,6 +80,7 @@ public class ExtendedReceiver extends PushBroadcastReceiver {
 		tvMsg.setGravity(Gravity.CENTER);
 		tvMsg.setTextSize(20);
 		tvMsg.setText(alert);
+		tvMsg.setPadding(10, 10, 10, 10);
 		
 		// Bind the two views with dialog builder
 		builder.setCustomTitle(tvTitle);
