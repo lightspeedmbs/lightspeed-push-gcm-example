@@ -19,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.arrownock.push.AnPush;
+import com.arrownock.push.AnPushCallbackAdapter;
+import com.arrownock.push.AnPushStatus;
 import com.arrownock.exception.ArrownockException;
 import com.demo.lightspeedgcm.PushActivity;
 import com.demo.lightspeedgcm.R;
@@ -67,6 +69,8 @@ public class MainActivity extends Activity {
 	private final String SAVED_LOGIN_NAME = "saved_login_name";
 	private final String SAVED_LOGIN_PASS = "saved_login_pass";
 	
+	private AnPush gAnPush;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,7 +105,7 @@ public class MainActivity extends Activity {
 		
 		
 		// The channel names we'll register at Lightspeed.
-		List channels = new ArrayList();
+		List<String> channels = new ArrayList<String>();
 		channels.add("channel1");
 		channels.add("channel2");
 		channels.add("channel3");
@@ -109,7 +113,37 @@ public class MainActivity extends Activity {
 
 		try {
 			  //Register your device with Lightspeed at designated channels.
-			AnPush.getInstance(getBaseContext()).register(channels);
+			gAnPush = AnPush.getInstance(getBaseContext());
+			gAnPush.setCallback(new AnPushCallbackAdapter() {
+
+				@Override
+				public void register(boolean err, String anid, ArrownockException exception) {
+					// TODO Auto-generated method stub
+					super.register(err, anid, exception);
+					if (err == true) {
+						Log.e(LOG_TAG, "Register with error = " + exception.getMessage());
+					}
+					else{
+						Log.i(LOG_TAG,"Register success");
+					}
+				}
+
+				@Override
+				public void statusChanged(AnPushStatus currentStatus, ArrownockException exception) {
+					if (currentStatus == AnPushStatus.ENABLE) {
+						Log.i(LOG_TAG,"Push status enalbed");
+						
+					} else if (currentStatus == AnPushStatus.DISABLE) {
+						Log.e(LOG_TAG,"Push status disabled");
+						
+					}
+					if (exception != null) {
+						Log.e(LOG_TAG,"Pust status change with error = "+ exception.toString() );
+					}
+				}
+			});
+			
+			gAnPush.register(channels);
 		} catch (ArrownockException ex) {
 			// If there's any error occur during register procedure, we'll print error message on Logcat.
 			ex.printStackTrace();
