@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 import com.arrownock.push.AnPush;
 import com.arrownock.push.AnPushCallbackAdapter;
-import com.arrownock.push.AnPushStatus;
 import com.arrownock.exception.ArrownockException;
 import com.demo.lightspeedgcm.PushActivity;
 import com.demo.lightspeedgcm.R;

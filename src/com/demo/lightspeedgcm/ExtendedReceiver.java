@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -17,12 +16,10 @@ import com.arrownock.push.PushBroadcastReceiver;
 // This is the receiver extends Lightspeed default receiver PushBroadcastReceiver
 // We can override "onReceive" method to implement our customized behavior.  
 public class ExtendedReceiver extends PushBroadcastReceiver {
-	private Context currentContext;
 	
 	@Override
 	// As receiving notification, we'll show a dialog with title and alert message 
 	public void onReceive(Context context, Intent intent) {
-		// TODO Auto-generated method stub
 		
 		// Default behavior of Lightspeed PushBroadcastReceiver
 		super.onReceive(context, intent);
