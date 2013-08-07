@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -32,7 +31,6 @@ public class PushActivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_push);
 		
@@ -61,7 +59,6 @@ public class PushActivity extends Activity {
 
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			
 			// Instantiate the entity of httpPost with loginUrl
 			HttpPost httpPost = new HttpPost("http://api.lightspeedmbs.com/v1/push_notification/send.json?key="+MainActivity.appKey);
@@ -124,7 +121,6 @@ public class PushActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		//Allocate current activity context to sCurrentAct
 		MainActivity.sCurrentAct = this;
@@ -132,7 +128,6 @@ public class PushActivity extends Activity {
 	
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		MainActivity.sCurrentAct = null;
 	}
