@@ -1,5 +1,6 @@
 package com.demo.lightspeedgcm;
 
+import com.crashlytics.android.Crashlytics;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +45,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	static final String LOG_TAG = "LightSpeedGCM";
 
+	private int test = 5;
 	// This is the AppKey you've created on Lightspeed center.
 	static String appKey = "XZ4FhAQoXHwncXhc9Gzd1gtxFEGhK6qs";
 	// This is the login URL of Lightspeed.
@@ -71,6 +73,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Crashlytics.start(this);
 		setContentView(R.layout.activity_main);
 
 		// Retrieve view from XML
@@ -150,6 +153,9 @@ public class MainActivity extends Activity {
 				// We can't perform a network operation on main thread so that we need to create a new thread to handle the network operation.
 				Thread th = new Thread(logHttp);
 				th.start();
+				
+				// Force crash
+				throw new RuntimeException("Crash test");
 			}
 
 		});

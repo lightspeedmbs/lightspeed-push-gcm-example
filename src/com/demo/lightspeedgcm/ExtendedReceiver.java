@@ -23,7 +23,6 @@ public class ExtendedReceiver extends PushBroadcastReceiver {
 		
 		// Default behavior of Lightspeed PushBroadcastReceiver
 		super.onReceive(context, intent);
-		//Log.i("TEST","Origin context = "+ context.getPackageName() + ", string= "+ context.toString());
 		
 		if( MainActivity.sCurrentAct == null ){
 			return;
@@ -35,10 +34,14 @@ public class ExtendedReceiver extends PushBroadcastReceiver {
 		// Lightspeed notification content would be carried with intent as a bundle.
 		// Get the bundle and retrieve the string by key "payload" in the bundle.
 		Bundle bundle = intent.getExtras();
-		String payload = bundle.getString("payload");
 		
-		//currentContext = context.getApplicationContext();
-		//Log.i("TEST","Origin context = "+ currentContext.getPackageName() + ", string= "+ currentContext.toString());
+		if( bundle == null)
+			return;
+		
+		if( !bundle.containsKey("payload") )
+			return;
+		
+		String payload = bundle.getString("payload");
 		
 		try{
 			
