@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
 
 	private int test = 5;
 	// This is the AppKey you've created on Lightspeed center.
-	static String appKey = "XZ4FhAQoXHwncXhc9Gzd1gtxFEGhK6qs";
+	static String appKey = "Pk3haxQKssKJTVmcAQAfsCw8KbpySoAt";
 	// This is the login URL of Lightspeed.
 	static String loginUrl = "http://api.lightspeedmbs.com/v1/admins/login.json";
 	// sCurrentAct will reference to current Activity context as Activity's onResume() is invoked.
@@ -66,6 +67,9 @@ public class MainActivity extends Activity {
 	private final String LIGHT_SPEED_PREF = "Lightspeed";
 	private final String SAVED_LOGIN_NAME = "saved_login_name";
 	private final String SAVED_LOGIN_PASS = "saved_login_pass";
+	
+	private final String REGISTER_TIME_STAMP = "register_time_stamp";
+	private final long RegisterDelay = 604800000l;
 
 	private AnPush gAnPush;
 
@@ -122,13 +126,19 @@ public class MainActivity extends Activity {
 						Log.e(LOG_TAG, "Register with error = " + exception.getMessage());
 					} else {
 						Log.i(LOG_TAG, "Register success");
+						gEditor.putLong(REGISTER_TIME_STAMP, Calendar.getInstance().getTimeInMillis()).commit();
 					}
 				}
 			});
 
 			// Register your device with Lightspeed at designated channels.
 			Log.i(LOG_TAG,"Register channel with GCM");
-			gAnPush.register(channels);
+			
+			if(needRegister()){
+				gAnPush.register(channels);
+			}else{
+				gAnPush.enable();
+			}
 			
 		} catch (ArrownockException ex) {
 			// If there's any error occur during register procedure, we'll print error message on Logcat.
@@ -153,7 +163,7 @@ public class MainActivity extends Activity {
 				th.start();
 				
 				// Force crash
-				throw new RuntimeException("Crash test");
+				//throw new RuntimeException("Crash test");
 			}
 
 		});
@@ -308,4 +318,13 @@ public class MainActivity extends Activity {
 		MainActivity.sCurrentAct = null;
 	}
 
+	private Boolean needRegister(){
+		Long now = Calendar.getInstance().getTimeInMillis();
+		Long last = gSharePref.getLong(REGISTER_TIME_STAMP, 0);
+		if(now - last >= RegisterDelay){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
