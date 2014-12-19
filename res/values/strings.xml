@@ -9,4 +9,6 @@
 	<string name="push_success">Push Sent Successfully!!</string>
 	<string name="invalid_id">Invalid Lightspeed ID</string>
 	<string name="welcome_msg">Welcome to\nLightspeed GCM"</string>
+	
+	<string name="app_key"></string>
 </resources>

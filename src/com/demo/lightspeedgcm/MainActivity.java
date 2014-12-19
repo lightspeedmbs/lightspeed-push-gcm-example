@@ -46,8 +46,6 @@ public class MainActivity extends Activity {
 	static final String LOG_TAG = "LightSpeedGCM";
 
 	private int test = 5;
-	// This is the AppKey you've created on Lightspeed center.
-	static String appKey = "Pk3haxQKssKJTVmcAQAfsCw8KbpySoAt";
 	// This is the login URL of Lightspeed.
 	static String loginUrl = "http://api.lightspeedmbs.com/v1/admins/login.json";
 	// sCurrentAct will reference to current Activity context as Activity's onResume() is invoked.

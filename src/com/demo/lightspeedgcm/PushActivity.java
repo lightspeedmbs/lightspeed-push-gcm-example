@@ -61,7 +61,7 @@ public class PushActivity extends Activity {
 		public void run() {
 			
 			// Instantiate the entity of httpPost with loginUrl
-			HttpPost httpPost = new HttpPost("http://api.lightspeedmbs.com/v1/push_notification/send.json?key="+MainActivity.appKey);
+			HttpPost httpPost = new HttpPost("http://api.lightspeedmbs.com/v1/push_notification/send.json?key="+getString(R.string.app_key));
 			
 			// Put the email and password in key-value pair into a List.
 			// This is the data we're going to post to loginUrl.
