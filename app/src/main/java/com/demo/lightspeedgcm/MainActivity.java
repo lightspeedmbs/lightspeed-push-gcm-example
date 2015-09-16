@@ -22,6 +22,7 @@ import org.json.JSONObject;
 import com.arrownock.push.AnPush;
 import com.arrownock.push.AnPushCallbackAdapter;
 import com.arrownock.exception.ArrownockException;
+import com.arrownock.push.IAnPushRegistrationCallback;
 import com.demo.lightspeedgcm.PushActivity;
 import com.demo.lightspeedgcm.R;
 
@@ -113,27 +114,23 @@ public class MainActivity extends Activity {
 			
 			// Instantiate an AnPush instance
 			gAnPush = AnPush.getInstance(getBaseContext());
-			
-			// Binding AnPush callback method : register & statusChanged
-			gAnPush.setCallback(new AnPushCallbackAdapter() {
-
-				@Override
-				public void register(boolean err, String anid, ArrownockException exception) {
-					super.register(err, anid, exception);
-					if (err == true) {
-						Log.e(LOG_TAG, "Register with error = " + exception.getMessage());
-					} else {
-						Log.i(LOG_TAG, "Register success");
-						gEditor.putLong(REGISTER_TIME_STAMP, Calendar.getInstance().getTimeInMillis()).commit();
-					}
-				}
-			});
 
 			// Register your device with Lightspeed at designated channels.
 			Log.i(LOG_TAG,"Register channel with GCM");
 			
 			if(needRegister()){
-				gAnPush.register(channels);
+				gAnPush.register(channels, new IAnPushRegistrationCallback() {
+					@Override
+					public void onSuccess(String s) {
+						Log.i(LOG_TAG, "Register success");
+						gEditor.putLong(REGISTER_TIME_STAMP, Calendar.getInstance().getTimeInMillis()).commit();
+					}
+
+					@Override
+					public void onError(ArrownockException e) {
+						Log.e(LOG_TAG, "Register with error = " + e.getMessage());
+					}
+				});
 			}else{
 				gAnPush.enable();
 			}
