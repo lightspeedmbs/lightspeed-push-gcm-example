@@ -72,8 +72,6 @@
                 android:name="com.arrownock.push.BroadcastReceiver.ArrivalActivity"
                 android:value="com.demo.lightspeedgcm.MainActivity" />
         </receiver>
-
-        <service android:name="com.arrownock.push.GCMIntentService" />
     </application>
 
 </manifest>
